@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - {{ session_id }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chat Session: {{ session_id }}</h1>
+            <a href="/" class="back-btn">← Back to Sessions</a>
+        </header>
+        
+        <!-- Chat messages container -->
+        <div class="chat-container">
+            {% for chat in chats %}
+                <div class="message {{ chat.sender }}">
+                    <div class="message-sender">{{ chat.sender }}:</div>
+                    <div class="message-content">{{ chat.message }}</div>
+                    <div class="message-time">{{ chat.timestamp }}</div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Message input form -->
+        <form action="/send/{{ session_id }}" method="post" class="message-form">
+            <input type="text" name="message" placeholder="Type your message..." autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+    
+    <!-- Auto-scroll to bottom of chat -->
+    <script>
+        window.onload = function() {
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Sessions</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot Sessions</h1>
+        
+        <!-- New session form -->
+        <form action="/start-session" method="post">
+            <input type="text" name="topic" placeholder="Enter session topic" required>
+            <button type="submit">Start New Session</button>
+        </form>
+        
+        <!-- Sessions list -->
+        <h2>Existing Sessions</h2>
+        <ul class="session-list">
+            {% for session in sessions %}
+                <li>
+                    <a href="/chat/{{ session }}">{{ session }}</a>
+                </li>
+            {% else %}
+                <li>No sessions found</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

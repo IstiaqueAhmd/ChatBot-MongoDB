@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymongo
+jinja2
+python-dotenv
+google-generativeai
+python-multipart
+scikit-learn
+numpy
